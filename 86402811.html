@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading...</title>
+    <style></style>
+  </head>
+  <body>
+    <div>
+      <div>
+        <img src="https://1.bp.blogspot.com/-xS1WGwAIrzo/XpxHT7WEIEI/AAAAAAAAAL0/CKg_S_ZMY4E695oB2tffe-1sM5HMyw_uwCLcBGAsYHQ/s1600/25.gif" />
+      </div>
+    </div>
+    <script>
+      function PageQuery(q) {
+        if (q.length > 1) this.q = q.substring(1, q.length);
+        else this.q = null;
+        this.keyValuePairs = new Array();
+        if (q) {
+          for (var i = 0; i < this.q.split("&").length; i++) {
+            this.keyValuePairs[i] = this.q.split("&")[i];
+          }
+        }
+        this.getKeyValuePairs = function() {
+          return this.keyValuePairs;
+        }
+        this.getValue = function(s) {
+          for (var j = 0; j < this.keyValuePairs.length; j++) {
+            if (this.keyValuePairs[j].split("=")[0] == s) return this.keyValuePairs[j].split("=")[1];
+          }
+          return false;
+        }
+        this.getParameters = function() {
+          var a = new Array(this.getLength());
+          for (var j = 0; j < this.keyValuePairs.length; j++) {
+            a[j] = this.keyValuePairs[j].split("=")[0];
+          }
+          return a;
+        }
+        this.getLength = function() {
+          return this.keyValuePairs.length;
+        }
+      }
+      function queryString(key) {
+        var page = new PageQuery(window.location.search);
+        return unescape(page.getValue(key));
+      }
+      var url = queryString("url");
+      if (!url) {} else {
+        setTimeout("location.href = '" + window.atob(url) + "';", 3000);
+      }
+    </script>
+  </body>
+</html>
